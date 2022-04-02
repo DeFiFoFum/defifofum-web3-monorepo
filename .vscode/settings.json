@@ -1,0 +1,10 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#e02f2f",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.activeForeground": "#ffffff"
+    },
+    "cSpell.words": [
+        "Turborepo"
+    ]
+}
