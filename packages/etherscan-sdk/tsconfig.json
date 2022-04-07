@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",                              /* Redirect output structure to the directory. */
+    // "rootDir": "./lib",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    // "strict": false, /* Enable all strict type-checking options. */
+    // "noImplicitAny": false, /* Raise error on expressions and declarations with an implied 'any' type. */
+    // "noImplicitThis": false, /* Raise error on 'this' expressions with an implied 'any' type. */
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./lib",
+  ],
+  "exclude": [
+    "./node_modules",
+    "./examples",
+    "./dist",
+    "./__tests__"
+  ]
+}
