@@ -1,7 +1,7 @@
 {
   "name": "ui",
   "private": true,
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "config": "*",
-    "tsconfig": "^0.0.9",
+    "tsconfig": "^0.0.10",
     "typescript": "^4.5.3"
   }
 }
