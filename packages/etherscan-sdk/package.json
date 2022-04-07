@@ -1,6 +1,6 @@
 {
   "name": "@defifofum/etherscan-sdk",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Typescript package used to interact with the Etherscan (and other clones) api.",
   "author": "defifofum",
   "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo#readme",
