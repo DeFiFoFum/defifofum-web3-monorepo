@@ -17,6 +17,9 @@
     "publish-canary": "lerna version prerelease --preid canary --force-publish",
     "publish-stable": "lerna version --force-publish && release && node ./scripts/release-notes.js"
   },
+  "resolutions": {
+    "@types/react": "^17.0.2"
+  },
   "devDependencies": {
     "lerna": "^4.0.0",
     "prettier": "^2.5.1",

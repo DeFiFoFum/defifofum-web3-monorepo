@@ -1,0 +1,29 @@
+{
+  "name": "@defifofum/etherscan-sdk",
+  "version": "0.0.8",
+  "description": "Typescript package used to interact with the Etherscan (and other clones) api.",
+  "author": "defifofum",
+  "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo#readme",
+  "license": "GPL-3.0",
+  "main": "dist/etherscan-sdk.js",
+  "types": "dist/etherscan-sdk.d.ts",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc --build",
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\""
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeFiFoFum/defifofum-web3-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/issues"
+  }
+}
