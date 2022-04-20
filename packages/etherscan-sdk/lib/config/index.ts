@@ -1,8 +1,8 @@
 import 'dotenv/config'
 
 
- export const API_TYPE_ARRAY = <const>['etherscan', 'bsc', 'polygon'];
- export type API_TYPE = typeof API_TYPE_ARRAY[number];
+export const API_TYPE_ARRAY = <const>['etherscan', 'bsc', 'polygon'];
+export type API_TYPE = typeof API_TYPE_ARRAY[number];
 
 interface APIDetails {
     baseUrl: string;
@@ -35,7 +35,7 @@ interface AppConfig {
 
 export function getConfig(api: API_TYPE = 'etherscan'): AppConfig {
     const config = API_CONFIGS[api];
-    if(!config) {
+    if (!config) {
         throw new Error(`No configuration found for api ${api}`);
     }
     return config;
