@@ -1,19 +1,18 @@
-require('dotenv').config()
+import 'dotenv/config'
+
+
+ export const API_TYPE_ARRAY = <const>['etherscan', 'bsc', 'polygon'];
+ export type API_TYPE = typeof API_TYPE_ARRAY[number];
 
 interface APIDetails {
     baseUrl: string;
     apiKey: string;
 }
 
-interface APIs {
-    etherscan: APIDetails;
-    bsc: APIDetails;
-    polygon: APIDetails;
-}
+type APIConfig = Record<API_TYPE, APIDetails>;
 
 
-// TODO: Add testnet?
-const API_CONFIGS: APIs = {
+const API_CONFIGS: APIConfig = {
     etherscan: {
         baseUrl: 'https://api.etherscan.io/api',
         apiKey: process.env.ETHERSCAN_API_KEY || '',
@@ -34,7 +33,7 @@ interface AppConfig {
     baseUrl: string;
 }
 
-export function getConfig(api: keyof APIs = 'etherscan'): AppConfig {
+export function getConfig(api: API_TYPE = 'etherscan'): AppConfig {
     const config = API_CONFIGS[api];
     if(!config) {
         throw new Error(`No configuration found for api ${api}`);

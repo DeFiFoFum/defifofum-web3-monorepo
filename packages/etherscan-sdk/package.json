@@ -25,5 +25,9 @@
   },
   "bugs": {
     "url": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/issues"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0"
   }
 }
