@@ -1,1 +1,1 @@
-export * from './wallchain-service'
+export * from './wallchainService'
