@@ -3,6 +3,9 @@
 # packages
 **/dist
 
+# outputs
+**/output/*.json
+
 # dependencies
 node_modules
 .pnp
