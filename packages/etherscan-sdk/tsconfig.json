@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./lib",
+  ],
+  "exclude": [
+    "./node_modules",
+    "./examples",
+    "./dist",
+    "./__tests__"
+  ]
+}
