@@ -92,10 +92,15 @@ export interface ParsedABI {
  * @param abi 
  * @returns ParsedABI
  */
-export function parseABI(abi: ContractABI | string): ParsedABI  {
+export function parseABI(abi: ContractABI | string): ParsedABI | undefined  {
     let parsedABI = abi as ContractABI;
     if(typeof abi == 'string') {
+      try {
         parsedABI = JSON.parse(abi) as ContractABI;
+      } catch (e) {
+        console.error(`parseABI:: Error parsing ABI: ${abi}. Returning undefined.`)
+        return undefined;
+      }
     }
 
     const functions = [] as FunctionABIDeclaration[];

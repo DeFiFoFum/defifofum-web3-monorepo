@@ -17,7 +17,7 @@ interface FullContractDetails {
     Proxy: string;
     Implementation: string;
     SwarmSource: string;
-    parsedAbi: ParsedABI;
+    parsedAbi: ParsedABI | undefined;
 }
 
 interface AccountBalance {
@@ -117,7 +117,7 @@ export default class EtherscanService {
      */
     async getContractABI(
         address: string,
-    ): Promise<ParsedABI> {
+    ): Promise<ParsedABI | undefined> {
         try {
             const response = await axios.get(`${this.baseUrl}`, {
                 params: {

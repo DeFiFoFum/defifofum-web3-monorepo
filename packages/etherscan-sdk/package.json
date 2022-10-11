@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "tsc --build",
-    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\""
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\"",
+    "example": "ts-node ./examples/contractAbi.ts"
   },
   "directories": {
     "lib": "lib",
