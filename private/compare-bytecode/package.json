@@ -1,0 +1,40 @@
+{
+  "name": "compare-bytecode",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo#readme",
+  "license": "GPL-3.0",
+  "main": "dist/compare-bytecode.js",
+  "types": "dist/compare-bytecode.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc --build",
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\"",
+    "example": "ts-node ./examples/compareBytecode.ts",
+    "example:onchain": "ts-node ./examples/compareOnChainBytecode.ts"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "jest"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeFiFoFum/defifofum-web3-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/issues"
+  },
+  "devDependencies": {
+    "@jest/types": "^27.5.1",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.29",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4"
+  },
+  "dependencies": {
+    "web3": "^1.8.0"
+  }
+}
