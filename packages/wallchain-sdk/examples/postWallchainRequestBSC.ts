@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { postWallchainRequest, WallchainRequest } from "../lib/wallchain-sdk";
 import LiquidityHelper from "../private/LiquidityHelper";
 import ApeRouterHelper from "../private/ApeRouterHelper";
@@ -21,27 +22,24 @@ function getUnixOffset(delay: number) {
  */
 
 async function script() {
-  // TODO: Add to config per chain
-  // NOTE: Polygon Router
-  const APESWAP_ROUTER = "0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607";
-  const POLYGON_LIQUIDITY_HELPER = "0x2F07969090a2E9247C761747EA2358E5bB033460";
-  const POLYGON_RPC_URL = "https://polygon-rpc.com/";
-  const CHAIN_ID: CHAIN_IDS = 137;
-  const BANANA_BNB_PAIR_ADDRESS = "0xF65C1C0478eFDe3c19b49EcBE7ACc57BB6B1D713";
-  const TOKEN_A = "0x5d47baba0d66083c52009271faf3f50dcc01023c"; // Polygon BANANA
-  const TOKEN_B = "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270"; // MATIC
+  // NOTE: BSC Router
+  const APESWAP_ROUTER = "0xcF0feBd3f17CEf5b47b0cD257aCf6025c5BFf3b7";
+  const LIQUIDITY_HELPER = "0x9b04DD397058d5f030A1ACd8119A7e0037B187f9";
+  const CHAIN_ID: CHAIN_IDS = 56;
+  const RPC_URL = process.env.RPC_URL_BSC || 'https://bscrpc.com/';
 
-  const liquidityHelper = new LiquidityHelper(
-    POLYGON_LIQUIDITY_HELPER,
-    POLYGON_RPC_URL
-  );
-  const apeRouterHelper = new ApeRouterHelper(APESWAP_ROUTER, POLYGON_RPC_URL);
+  const BANANA_BNB_PAIR_ADDRESS = "0xF65C1C0478eFDe3c19b49EcBE7ACc57BB6B1D713"; // BSC
+  const TOKEN_A = "0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95"; // BSC BANANA
+  const TOKEN_B = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"; // BNB
 
-  // const tokenBalances = await liquidityHelper.getPairBalancesFromPairAddress(BANANA_BNB_PAIR_ADDRESS)
-  const tokenBalances = await liquidityHelper.getPairBalancesFromTokenAddresses(
-    TOKEN_A,
-    TOKEN_B
-  );
+  const liquidityHelper = new LiquidityHelper(LIQUIDITY_HELPER, RPC_URL);
+  const apeRouterHelper = new ApeRouterHelper(APESWAP_ROUTER, RPC_URL);
+
+  const tokenBalances = await liquidityHelper.getPairBalancesFromPairAddress(BANANA_BNB_PAIR_ADDRESS)
+  // const tokenBalances = await liquidityHelper.getPairBalancesFromTokenAddresses(
+  //   TOKEN_A,
+  //   TOKEN_B
+  // );
 
   // NOTE: Log
   console.dir({

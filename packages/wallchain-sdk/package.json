@@ -12,7 +12,8 @@
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "yarn typechain && tsc --build",
     "typechain": "typechain --target ethers-v5 --out-dir './lib/ABI/types' './lib/ABI/*.json'",
-    "example": "ts-node ./examples/postWallchainRequest.ts"
+    "example": "ts-node ./examples/postWallchainRequest.ts",
+    "example:bsc": "ts-node ./examples/postWallchainRequestBSC.ts"
   },
   "directories": {
     "lib": "lib",
