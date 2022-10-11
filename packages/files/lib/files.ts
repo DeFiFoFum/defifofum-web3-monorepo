@@ -37,12 +37,17 @@ export const writeJSONToFile = async (
 	fileName: string,
 	data: {},
 	withDate = false,
-): Promise<void> => {
+): Promise<string> => {
 	try {
-		const fileNameToWrite = withDate ? appendDateToFileName(fileName) : fileName;
+		if(fileName.includes('.json')) {
+			fileName = fileName.substring(0,fileName.length - 5)
+		}
+		const fileNameToWrite = withDate ? appendDateToFileName(fileName) + '.json' : fileName + '.json';
 		await fs.promises.writeFile(fileNameToWrite, JSON.stringify(data, null, 4));
+		return fileNameToWrite;
 	} catch (e: any) {
 		console.error(`Error writing ${fileName}: ${e}`);
+		return "";
 	}
 };
 
