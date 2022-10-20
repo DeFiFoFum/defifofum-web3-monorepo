@@ -1,4 +1,6 @@
 import { multicallDynamicAbiIndexedCalls, AbiCall } from "@defifofum/multicall";
+import { utils, BigNumber } from "ethers";
+const formatEther = utils.formatEther;
 import ERC20RewardApeV1Build from "../lib/ABIs/ERC20RewardApeV1.json";
 
 const RPC_PROVIDER = "https://mainnet.telos.net/evm";
@@ -21,10 +23,29 @@ const readFunctions = [
   "bonusEndTime",
   "getUnharvestedRewards",
   "getStakeTokenFeeBalance",
-];
+] as const;
 
 function getBlockExplorerUrl(address: string) {
   return `https://www.teloscan.io/address/${address}#contract`;
+}
+
+type ReadFunctionType = { [K in typeof readFunctions[number]]: string };
+function calculatedDataArray(poolDataArray: ReadFunctionType[]) {
+  return poolDataArray.map((poolData, index) => {
+    return calculatePoolData(poolData);
+  });
+}
+
+function calculatePoolData(poolData: ReadFunctionType) {
+  const calculatedData = JSON.parse(JSON.stringify(poolData));
+  const totalTime = Number(poolData.bonusEndTime) - Number(poolData.startTime);
+  const totalRewards = BigNumber.from(poolData.rewardPerSecond).mul(
+    BigNumber.from(totalTime)
+  );
+  calculatedData.totalTime = totalTime;
+  calculatedData.totalRewards = formatEther(totalRewards);
+
+  return calculatedData;
 }
 
 async function script() {
@@ -71,7 +92,8 @@ async function script() {
   );
 
   // FIXME: log
-  console.dir({ cleanedLpTokenDataArray });
+  const calculatedData = calculatedDataArray(cleanedLpTokenDataArray);
+  console.dir({ calculatedData });
 }
 
 (async function () {
