@@ -26,18 +26,22 @@ interface AccountBalance {
     decimalBalance: string;
 }
 
+interface BaseConfig {
+    startBlock?: number | string;
+    endBlock?: number | string;
+    sort?: 'asc' | 'dsc';
+    page?: number;
+    offset?: number;
+}
+
 /**
  *
  * ERC20 Transfers
  *
  */
-interface AccountTokenTransferConfig {
-    startBlock?: number | string;
-    endBlock?: number | string;
+interface AccountTokenTransferConfig extends BaseConfig {
     action?: 'tokentx' | 'tokennfttx';
-    sort?: 'asc' | 'dsc';
-    page?: number;
-    offset?: number;
+
 }
 
 interface AccountTokenTransfer {
@@ -49,6 +53,7 @@ interface AccountTokenTransfer {
     from: string;
     contractAddress: string;
     to: string;
+    value: string;
     tokenID: string;
     tokenName: string;
     tokenSymbol: string;
@@ -67,14 +72,9 @@ interface AccountTokenTransfer {
  * Account Transactions
  *
  */
-interface AccountTXConfig {
-    startBlock?: number | string;
-    endBlock?: number | string;
+interface AccountTXConfig extends BaseConfig {
     // TODO: txlistinternal has a different return shape
     action?: 'txlist' | 'txlistinternal';
-    sort?: 'asc' | 'dsc';
-    page?: number;
-    offset?: number;
 }
 
 interface AccountTX {
@@ -98,6 +98,30 @@ interface AccountTX {
     confirmations: string;
 }
 
+/**
+ * 
+ * Logs
+ * 
+ */
+ interface LogsConfig extends BaseConfig {
+    // Currently only one action type
+    // action?: 'getLogs';
+}
+
+type AND_OR = 'and' | 'or';
+
+export interface FilterParameters {
+    topic0?: string;
+    topic1?: string;
+    topic2?: string;
+    topic3?: string;
+    topic0_1_opr?: AND_OR;
+    topic1_2_opr?: AND_OR;
+    topic2_3_opr?: AND_OR;
+    topic0_2_opr?: AND_OR;
+    topic0_3_opr?: AND_OR;
+    topic1_3_opr?: AND_OR;
+}
 
 export default class EtherscanService {
     baseUrl: string;
@@ -260,6 +284,60 @@ export default class EtherscanService {
                     module: 'account',
                     action,
                     address: address.toString(), // Turn array into comma separated string
+                    startBlock,
+                    endBlock,
+                    sort,
+                    ...(page && { page }),
+                    ...(offset && { offset }),
+                    apikey: this.apiKey,
+                },
+            });
+
+            return response.data.result as AccountTokenTransfer[];
+        } catch (error) {
+            console.error(error);
+            throw new Error(error as any);
+        }
+    }
+
+
+    /**
+     * Obtain event logs from a contract. 
+     * 
+     * --> From and to block are required
+     * 
+     * Topic filter docs: https://docs.bscscan.com/api-endpoints/logs
+     * 
+     * @param address
+     * @param topicQuery Pass a single topic to search for, or pass Filter Params
+     * @param LogsConfig 
+     * @returns Array of log objects
+     */
+    async getLogs(
+        address: string,
+        topicQuery: string | FilterParameters,
+        {
+            startBlock = '0',
+            endBlock = 'latest',
+            sort = 'asc',
+            page,
+            offset,
+        }: LogsConfig,
+    ): Promise<AccountTokenTransfer[]> {
+        try {
+            let topics: FilterParameters;
+            if(typeof topicQuery == 'string') {
+                topics = { topic0: topicQuery };
+            } else {
+                topics = topicQuery
+            }
+
+            const response = await axios.get(`${this.baseUrl}`, {
+                params: {
+                    module: 'logs',
+                    action: 'getLogs',
+                    address: address.toString(), // Turn array into comma separated string
+                    ...topics,
                     startBlock,
                     endBlock,
                     sort,
