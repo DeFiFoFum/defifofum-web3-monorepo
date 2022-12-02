@@ -30,5 +30,8 @@
   "dependencies": {
     "axios": "^0.26.1",
     "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3"
   }
 }

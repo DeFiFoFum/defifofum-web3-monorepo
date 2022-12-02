@@ -3,7 +3,7 @@ import { parseABI, ParsedABI } from '../utils/abi'
 import { utils } from 'ethers';
 const { formatUnits } = utils;
 
-interface FullContractDetails {
+export interface FullContractDetails {
     SourceCode: string;
     ABI: string;
     ContractName: string;
@@ -20,13 +20,13 @@ interface FullContractDetails {
     parsedAbi: ParsedABI | undefined;
 }
 
-interface AccountBalance {
+export interface AccountBalance {
     account: string;
     balance: string;
     decimalBalance: string;
 }
 
-interface BaseConfig {
+export interface BaseConfig {
     startBlock?: number | string;
     endBlock?: number | string;
     sort?: 'asc' | 'dsc';
@@ -39,12 +39,12 @@ interface BaseConfig {
  * ERC20 Transfers
  *
  */
-interface AccountTokenTransferConfig extends BaseConfig {
+export interface AccountTokenTransferConfig extends BaseConfig {
     action?: 'tokentx' | 'tokennfttx';
 
 }
 
-interface AccountTokenTransfer {
+export interface AccountTokenTransfer {
     blockNumber: string;
     timeStamp: string;
     hash: string;
@@ -72,12 +72,12 @@ interface AccountTokenTransfer {
  * Account Transactions
  *
  */
-interface AccountTXConfig extends BaseConfig {
+export interface AccountTXConfig extends BaseConfig {
     // TODO: txlistinternal has a different return shape
     action?: 'txlist' | 'txlistinternal';
 }
 
-interface AccountTX {
+export interface AccountTX {
     blockNumber: string;
     timeStamp: string;
     hash: string;
@@ -103,7 +103,7 @@ interface AccountTX {
  * Logs
  * 
  */
- interface LogsConfig extends BaseConfig {
+ export interface LogsConfig extends BaseConfig {
     // Currently only one action type
     // action?: 'getLogs';
 }
