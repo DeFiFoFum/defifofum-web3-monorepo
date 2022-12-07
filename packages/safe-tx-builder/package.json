@@ -1,6 +1,6 @@
 {
   "name": "@defifofum/safe-tx-builder",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "",
   "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/packages/safe-tx-builder",
   "license": "GPL-3.0",
@@ -26,6 +26,7 @@
     "url": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/issues"
   },
   "devDependencies": {
+    "@defifofum/files": "^0.0.2",
     "@jest/types": "^27.5.1",
     "@types/jest": "^27.4.1",
     "@types/node": "^18.11.11",
