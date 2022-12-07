@@ -1,11 +1,11 @@
 {
   "name": "@defifofum/files",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo#readme",
   "license": "GPL-3.0",
-  "main": "dist/files.js",
-  "types": "dist/files.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc --build",

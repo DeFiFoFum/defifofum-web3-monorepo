@@ -1,11 +1,12 @@
 {
-  "extends": "../../packages/tsconfig/base.json",
+  "extends": "../tsconfig/base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "resolveJsonModule": true,
     "esModuleInterop": true,
   },
   "include": [
+    "index.ts",
     "./lib",
   ],
   "exclude": [
