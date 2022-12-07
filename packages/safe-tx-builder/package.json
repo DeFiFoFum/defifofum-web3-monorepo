@@ -1,0 +1,39 @@
+{
+  "name": "@defifofum/safe-tx-builder",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/packages/safe-tx-builder",
+  "license": "GPL-3.0",
+  "main": "dist/safe-tx-builder.js",
+  "types": "dist/safe-tx-builder.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc --build",
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\""
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "jest"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeFiFoFum/defifofum-web3-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/issues"
+  },
+  "devDependencies": {
+    "@jest/types": "^27.5.1",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^18.11.11",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "@defifofum/files": "^0.0.1"
+  }
+}
