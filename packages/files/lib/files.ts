@@ -6,10 +6,27 @@ import moment from 'moment';
  * 
  * @param fileName Name of the file (Does not include '.json')
  */
- const appendDateToFileName = (
+const appendDateToFileName = (
 	fileName: string,
 ): string => {
 	return `${fileName}-${moment().format('YYYY-MM-DD')}`
+};
+
+/**
+ * removeExtension
+ * 
+ * @param fileName Name of the file with or without extension
+ * @param extension .json, .md, .csv etc
+ * @returns fileName without extension
+ */
+const removeExtension = (
+	fileName: string,
+	extension: '.json' | '.md' | '.csv'
+): string => {
+	if(fileName.includes(extension)) {
+		fileName = fileName.substring(0,fileName.length - extension.length)
+	}
+	return fileName;
 };
 
 /**
@@ -39,9 +56,7 @@ export const writeJSONToFile = async (
 	withDate = false,
 ): Promise<string> => {
 	try {
-		if(fileName.includes('.json')) {
-			fileName = fileName.substring(0,fileName.length - 5)
-		}
+		fileName = removeExtension(fileName, '.json');
 		const fileNameToWrite = withDate ? appendDateToFileName(fileName) + '.json' : fileName + '.json';
 		await fs.promises.writeFile(fileNameToWrite, JSON.stringify(data, null, 4));
 		return fileNameToWrite;
@@ -74,6 +89,7 @@ export const writeArrayToCSV = async (
 	).join('\n');
 
 	try {
+		fileName = removeExtension(fileName, '.csv');
 		const fileNameToWrite = withDate ? appendDateToFileName(fileName) : fileName;
 		await fs.promises.writeFile(fileNameToWrite + '.csv', csv);
 	} catch (e) {
@@ -110,6 +126,7 @@ export const writeMarkdownTableToFile = async (
 	}
 
 	try {
+		fileName = removeExtension(fileName, '.md');
 		const fileNameToWrite = withDate ? appendDateToFileName(fileName) : fileName;
 		await fs.promises.writeFile(fileNameToWrite + '.md', tableString);
 	} catch (e) {

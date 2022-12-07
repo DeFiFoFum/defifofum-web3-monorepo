@@ -1,3 +1,2 @@
-# JS Files
-
-Helper package to easily READ/WRITE files.
+# Node Files API
+Helper package to easily READ/WRITE files using `fs`.
