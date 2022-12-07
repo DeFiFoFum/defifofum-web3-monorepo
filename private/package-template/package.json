@@ -5,7 +5,7 @@
   "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo#readme",
   "license": "GPL-3.0",
   "main": "dist/package-template.js",
-  "types": "dist/package-template.ts",
+  "types": "dist/package-template.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc --build",
