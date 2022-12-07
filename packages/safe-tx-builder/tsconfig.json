@@ -8,6 +8,7 @@
     "types": ["@types/jest", "node"]
   },
   "include": [
+    "index.ts",
     "./lib",
     "./scripts"
   ],
