@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc --build",
-    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\""
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\"",
+    "script:set": "ts-node ./scripts/miniApeSet.ts"
   },
   "directories": {
     "lib": "lib",
@@ -34,7 +35,5 @@
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1"
   },
-  "dependencies": {
-    "@defifofum/files": "^0.0.1"
-  }
+  "dependencies": {}
 }

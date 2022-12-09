@@ -1,17 +1,23 @@
 
 // import { miniApeV2Builders } from "@defifofum/safe-tx-builder"
 import { miniApeV2Builders } from "../lib/safe-tx-builder"
-import { readJSONFile, writeJSONToFile } from "@defifofum/files"
+import { writeJSONToFile } from "@defifofum/files"
 
+// NOTE: Import proper adjustments
+import Adjustments from './input.json'
 const MINI_APE_ADDRESS = '0x54aff400858Dcac39797a81894D9920f16972D1D';
 
 async function script() {
-    const file = await readJSONFile(__dirname + "/input.json")
+    const mappedAdjustments = Adjustments.map(currentAdjustment => { return { 
+        pid: String(currentAdjustment.pid),
+        allocPoint: String(currentAdjustment.allocation)
+    } })
     
-    console.dir({file})
+    console.dir({mappedAdjustments})
+
     const txBuilder = miniApeV2Builders.generateTxs_MiniApe_Set(
         MINI_APE_ADDRESS,
-        file as any,
+        mappedAdjustments,
     )
 
     await writeJSONToFile(__dirname + "/SetTxBuilder.json", txBuilder, true)
