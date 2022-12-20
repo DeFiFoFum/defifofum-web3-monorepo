@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc --build",
-    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\""
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\"",
+    "example:decode": "ts-node ./examples/decodeTxData.ts"
   },
   "directories": {
     "lib": "lib",
@@ -29,7 +30,8 @@
     "@jest/types": "^27.5.1",
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
-    "ts-jest": "^27.1.4"
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "ethers": "^5.7.2"
