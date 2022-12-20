@@ -1,0 +1,37 @@
+{
+  "name": "ola-lending-cli",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "https://github.com/DeFiFoFum/defifofum-web3-monorepo#readme",
+  "license": "GPL-3.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc --build",
+    "watch": "tsc-watch --onSuccess \"node ./dist/demo.js\""
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "jest"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeFiFoFum/defifofum-web3-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeFiFoFum/defifofum-web3-monorepo/issues"
+  },
+  "devDependencies": {
+    "@jest/types": "^27.5.1",
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
+}

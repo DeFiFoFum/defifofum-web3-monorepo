@@ -1,0 +1,19 @@
+{
+  "extends": "../../packages/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["@types/jest"]
+  },
+  "include": [
+    "index.ts",
+    "./lib",
+    "./examples"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./dist",
+    "./__tests__"
+  ]
+}
