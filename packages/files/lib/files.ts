@@ -49,6 +49,7 @@ export const readJSONFile = async (filePath: string): Promise<Buffer> => {
  * 
  * @param fileName 
  * @param data 
+ * @param withDate Append date to the filename.
  */
 export const writeJSONToFile = async (
 	fileName: string,
@@ -66,12 +67,40 @@ export const writeJSONToFile = async (
 	}
 };
 
+/**
+ * Take an array of flat objects with the same shape and save to a .csv file
+ * 
+ * @param fileName 
+ * @param data Array of objects written to csv.
+ * @param withDate Append date to the filename.
+ */
+export const writeJSONToCSV = async <O extends Record<string, string | number>>(
+	fileName: string,
+	data: Array<O>,
+	withDate = false,
+): Promise<void> => {
+	const objectKeys = Object.keys(data[0])
+	const csv = [objectKeys.join(',')];
+	const csvString = [...csv, ...data.map(row => {
+		return objectKeys.map(key => row[key]).join(',')
+	})].join('\n')
+
+	try {
+		fileName = removeExtension(fileName, '.csv');
+		const fileNameToWrite = withDate ? appendDateToFileName(fileName) : fileName;
+		await fs.promises.writeFile(fileNameToWrite + '.csv', csvString);
+	} catch (e) {
+		console.error(`Error writing ${fileName}: ${e}`);
+	}
+};
+
 
 /**
  * Take an array of arrays and write to CSV file. First row can optionally be the header.
  * 
  * @param fileName 
  * @param data Array of arrays written to csv.
+ * @param withDate Append date to the filename.
  */
 export const writeArrayToCSV = async (
 	fileName: string,
@@ -102,6 +131,7 @@ export const writeArrayToCSV = async (
  * 
  * @param fileName 
  * @param data Array of arrays written to markdown table.
+ * @param withDate Append date to the filename.
  */
 export const writeMarkdownTableToFile = async (
 	fileName: string,
