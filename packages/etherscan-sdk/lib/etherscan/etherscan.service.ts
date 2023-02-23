@@ -108,6 +108,20 @@ export interface AccountTX {
     // action?: 'getLogs';
 }
 
+export interface Log { 
+    address: string
+    topics: string[]
+    data: string
+    blockNumber: string
+    blockHash: string
+    timeStamp: string 
+    gasPrice: string
+    gasUsed: string
+    logIndex: string
+    transactionHash: string
+    transactionIndex: string
+  }
+
 type AND_OR = 'and' | 'or';
 
 export interface FilterParameters {
@@ -323,7 +337,7 @@ export default class EtherscanService {
             page,
             offset,
         }: LogsConfig,
-    ): Promise<AccountTokenTransfer[]> {
+    ): Promise<Log[]> {
         try {
             let topics: FilterParameters;
             if(typeof topicQuery == 'string') {
@@ -347,7 +361,7 @@ export default class EtherscanService {
                 },
             });
 
-            return response.data.result as AccountTokenTransfer[];
+            return response.data.result as Log[];
         } catch (error) {
             console.error(error);
             throw new Error(error as any);
