@@ -1,6 +1,5 @@
 // import { EtherscanService, Log } from "@defifofum/etherscan-sdk";
-import { EtherscanService, Log } from "../lib/etherscan";
-import { getConfig } from "../lib/config";
+import { EtherscanService, Log, getConfig } from "../lib/etherscan-sdk";
 
 const { baseUrl: BASE_URL, apiKey: API_KEY } = getConfig("bsc");
 
